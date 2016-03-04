@@ -9,6 +9,7 @@ pygame.init()
 size = screenHeight, screenWidth = 1280, 960
 
 screen = pygame.display.set_mode(size)
+<<<<<<< HEAD
 
 
 
@@ -20,3 +21,5 @@ def mainMenu():
 def game():
 
     print("This is where you'll run the main game")
+=======
+>>>>>>> origin/master
