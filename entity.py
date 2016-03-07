@@ -1,3 +1,6 @@
+import pygame
+from pygame.locals import *
+pygame.init()
 
 class entity():
 
@@ -22,9 +25,11 @@ class entity():
 
     def move(self,dx,dy):
 
-        moveRect(dx,dy)
+        self.moveRect(dx,dy)
         self.x+=dx
         self.y+=dy
 
     def refresh(self):
         self.screen.blit(self.image, (self.x,self.y))
+
+    
