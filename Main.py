@@ -23,6 +23,7 @@ def game():
     player1 = player(100,100,playerImage,screen)
 
     while True:
+        
         screen.fill((0,0,0))
         player1.refresh()
         pygame.display.flip()
