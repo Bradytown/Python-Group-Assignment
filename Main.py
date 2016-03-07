@@ -21,5 +21,3 @@ def mainMenu():
 def game():
 
     print("This is where you'll run the main game")
-=======
->>>>>>> origin/master
