@@ -29,6 +29,11 @@ class entity():
         self.x+=dx
         self.y+=dy
 
+    def resize(self,x,y):
+        self.image = pygame.transform.scale(self.image,(x,y))
+        self.height = self.image.get_height()
+        self.width = self.image.get_width()
+
     def refresh(self):
         self.screen.blit(self.image, (self.x,self.y))
 
