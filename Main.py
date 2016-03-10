@@ -1,10 +1,7 @@
-#Main module to import when you start programming
-#Doesn't do anything yet
-
 import pygame, time
 from pygame.locals import *
 from player import *
-from platform import *
+from gamePlatform import *
 
 pygame.init()
 
@@ -33,7 +30,7 @@ def game():
 
     #Platform for testing
 
-    plat = platform(100,200,2,playerImage,playerImage,playerImage,screen)
+    plat = gamePlatform(100,200,2,playerImage,playerImage,playerImage,screen)
 
 
     while True:
