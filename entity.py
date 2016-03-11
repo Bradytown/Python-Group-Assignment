@@ -8,7 +8,7 @@ class entity():
 
         self.x = x
         self.y = y
-        self.image = pygame.image.load(image)
+        self.image = image
         self.height = self.image.get_height()
         self.width = self.image.get_width()
         self.setRect((self.x,self.y,self.height, self.width))

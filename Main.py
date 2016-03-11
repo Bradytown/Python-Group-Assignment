@@ -22,7 +22,7 @@ def game():
     current_time = target_time = time.clock()
 
     #Player declaration
-    playerImage = "Characters\Guy with Gun.png"
+    playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage,screen)
     player1.resize(80,140)
     player1.move((screenWidth/2)-(player1.width/2), (screenHeight/2)-(player1.height/2))
@@ -30,7 +30,8 @@ def game():
 
     #Platform for testing
 
-    plat = gamePlatform(100,200,2,playerImage,playerImage,playerImage,screen)
+    platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
+    plat = gamePlatform(100,200,2,platform4Image, screen)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))
@@ -66,7 +67,7 @@ def game():
         #Draw section
         screen.blit(backgroundImage,(0,0))
         player1.refresh()
-        #plat.refresh()
+        plat.refresh()
 
         #FPS management
         target_time += loop_delta

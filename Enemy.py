@@ -4,7 +4,7 @@ from pygame.locals import *
 from entity import entity
 pygame.init()
 
-class Enemy(entity):
+class enemy(entity):
 
     def __init__(self,x,y,image,screen):    
         entity.__init__(self,x,y,image,screen)
