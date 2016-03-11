@@ -2,10 +2,11 @@ import pygame, time
 from pygame.locals import *
 from player import *
 from gamePlatform import *
+from gameGlobals import *
 
 pygame.init()
 
-size = screenWidth, screenHeight = 640, 480
+
 
 screen = pygame.display.set_mode(size)
 
@@ -21,12 +22,16 @@ def game():
     loop_delta = 1./fps
     current_time = target_time = time.clock()
 
+
     #Player declaration
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage,screen)
-    player1.resize(80,140)
-    player1.move((screenWidth/2)-(player1.width/2), (screenHeight/2)-(player1.height/2))
+    player1.resize(playerWidth,playerHeight)
+
+    #Moving player to centre
+    #xOrig and yOrig in globals
     
+    player1.move(xOrig, yOrig)
 
     #Platform for testing
 
