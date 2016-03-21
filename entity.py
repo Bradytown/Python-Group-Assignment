@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 pygame.init()
 
-class entity(pygame.sprite.Sprite):
+class entity(pygame.sprite.DirtySprite):
 
     def __init__(self, x, y, image):
 

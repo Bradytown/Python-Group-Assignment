@@ -17,6 +17,10 @@ def mainMenu():
 
 def game():
 
+    #Sprite Group Declarations
+
+    allSpritesGroup = pygame.sprite.Group()
+
     ##FPS management
     fps = 60
     loop_delta = 1./fps
@@ -25,8 +29,9 @@ def game():
 
     #Player declaration
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
-    player1 = player(0,0,playerImage,screen)
+    player1 = player(0,0,playerImage)
     player1.resize(playerWidth,playerHeight)
+    allSpritesGroup.add(player1)
 
     #Moving player to centre
     #xOrig and yOrig in globals
@@ -35,11 +40,10 @@ def game():
 
     #Platforms
 
-    platformOnList = []
-    platformOffList = []
-
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
     plat = gamePlatform(100,200,2,platform4Image, screen)
+
+    allSpritesGroup.add(plat)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))
@@ -83,8 +87,8 @@ def game():
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
-        player1.refresh()
-        plat.refresh()
+
+        
 
         #FPS management
         target_time += loop_delta
