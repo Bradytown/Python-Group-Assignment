@@ -63,6 +63,7 @@ def game():
         #the two fps management snippets
         previous_time, current_time = current_time, time.clock()
 
+
         #Pygame event management
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -73,7 +74,7 @@ def game():
         #Player Input
         keys = pygame.key.get_pressed()
         if keys[pygame.K_d] :
-            print()
+            player1.move(1,0)
         if keys[pygame.K_a] :
             print()
         if keys[pygame.K_w] :
@@ -92,6 +93,7 @@ def game():
         #Draw section
         screen.blit(backgroundImage,(0,0))
 
+        allSpritesGroup.update()
         updateArea = allSpritesGroup.draw(screen)
 
         pygame.display.update()

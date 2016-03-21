@@ -9,6 +9,3 @@ class player(entity):
 
     def __init__(self,x,y,image):    
         entity.__init__(self,x,y,image)
-
-    def refresh(self):
-        self.screen.blit(self.image, (xOrig, yOrig))
