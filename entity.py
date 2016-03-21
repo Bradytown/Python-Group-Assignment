@@ -17,6 +17,8 @@ class entity(pygame.sprite.DirtySprite):
         self.rect.x = x
         self.rect.y = y
 
+        self.dirty = 2
+
     def move(self,dx,dy):
 
         self.rect.x+=dx

@@ -20,6 +20,9 @@ def game():
     #Sprite Group Declarations
 
     allSpritesGroup = pygame.sprite.Group()
+    onScreenGroup = pygame.sprite.Group()
+    offScreenGroup = pygame.sprite.Group()
+
 
     ##FPS management
     fps = 60
@@ -41,16 +44,17 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-    plat = gamePlatform(100,200,2,platform4Image, screen)
+    plat = gamePlatform(100,200,2,platform4Image)
 
     allSpritesGroup.add(plat)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))
 
-    #On/off list
-    onScreenList = []
-    offScreenList = []
+    
+
+
+    
     
     while True:
 
@@ -82,13 +86,16 @@ def game():
 
         #List Assignement
 
-        for i in range(0, len(offScreenList)):
+        #for i in range(0, len(offScreenList)):
             
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
 
-        
+        updateArea = allSpritesGroup.draw(screen)
+
+        pygame.display.update()
+
 
         #FPS management
         target_time += loop_delta
@@ -96,7 +103,7 @@ def game():
         if sleep_time < 0:
             sleep_time = 0
         time.sleep(sleep_time)
+
         
-        pygame.display.update(allSpritesGroup.)
 
 game()
