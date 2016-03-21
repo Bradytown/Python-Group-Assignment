@@ -5,8 +5,8 @@ pygame.init()
 
 class gamePlatform(entity):
 
-    def __init__(self, x, y, length, image, screen):
-        entity.__init__(self, x, y, image, screen)
+    def __init__(self, x, y, length, image):
+        entity.__init__(self, x, y, image)
 
 ##        self.leftImage = pygame.image.load(leftImage)
 ##        self.rightImage = pygame.image.load(rightImage)
@@ -15,30 +15,3 @@ class gamePlatform(entity):
 
         if self.length <= 0:
             self.length = 1
-
-    def refresh(self):
-
-
-        self.dx = 0
-        
-
-        for i in range(0,self.length):
-            self.screen.blit(self.image,(self.x+self.dx,self.y))
-            self.dx+=int(self.image.get_width())
-
-##        self.screen.blit(self.leftImage, (self.x, self.y))
-##
-##        dx = 0
-##        
-##        for i in range (0,self.length):
-##
-##            if i == 0:
-##                dx += int(self.leftImage.get_width())
-##            else:
-##                dx += int(self.centreImage.get_width())
-##
-##            self.screen.blit(self.centreImage, (self.x+dx, self.y))
-##
-##        dx += int(self.centreImage.get_width())
-##        
-##        self.screen.blit(self.rightImage,(self.x+dx, self.y))

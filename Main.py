@@ -33,7 +33,10 @@ def game():
     
     player1.move(xOrig, yOrig)
 
-    #Platform for testing
+    #Platforms
+
+    platformOnList = []
+    platformOffList = []
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
     plat = gamePlatform(100,200,2,platform4Image, screen)
@@ -41,6 +44,10 @@ def game():
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))
 
+    #On/off list
+    onScreenList = []
+    offScreenList = []
+    
     while True:
 
         #Set current and previous time for FPS
@@ -69,6 +76,11 @@ def game():
             print()
         
 
+        #List Assignement
+
+        for i in range(0, len(offScreenList)):
+            
+        
         #Draw section
         screen.blit(backgroundImage,(0,0))
         player1.refresh()
@@ -81,7 +93,6 @@ def game():
             sleep_time = 0
         time.sleep(sleep_time)
         
-
         pygame.display.flip()
 
 game()

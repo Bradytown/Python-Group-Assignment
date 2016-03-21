@@ -6,5 +6,5 @@ pygame.init()
 
 class enemy(entity):
 
-    def __init__(self,x,y,image,screen):    
-        entity.__init__(self,x,y,image,screen)
+    def __init__(self,x,y,image):    
+        entity.__init__(self,x,y,image)
