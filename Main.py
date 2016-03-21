@@ -97,6 +97,6 @@ def game():
             sleep_time = 0
         time.sleep(sleep_time)
         
-        pygame.display.flip()
+        pygame.display.update(allSpritesGroup.)
 
 game()
