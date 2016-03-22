@@ -59,6 +59,9 @@ def game():
 
 
     #Player declaration
+
+    playerSpeed = 3
+    
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage)
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
@@ -102,9 +105,9 @@ def game():
         #Player Input
         keys = pygame.key.get_pressed()
         if keys[pygame.K_d] :
-            player1.move(1,0)
+            player1.move(playerSpeed,0)
         if keys[pygame.K_a] :
-            player1.move(-1,0)
+            player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
             print()
         
