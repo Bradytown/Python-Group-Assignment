@@ -1,14 +1,14 @@
-import pygame, time
+import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
 from gamePlatform import *
-from gameGlobals import *
+
 
 pygame.init()
 
 
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(gameGlobals.size)
 
 
 def mainMenu():
@@ -33,13 +33,13 @@ def game():
     #Player declaration
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage)
-    player1.resize(playerWidth,playerHeight)
+    player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
     allSpritesGroup.add(player1)
 
     #Moving player to centre
     #xOrig and yOrig in globals
     
-    player1.move(xOrig, yOrig)
+    player1.move(gameGlobals.xOrig, gameGlobals.yOrig)
 
     #Platforms
 
@@ -49,7 +49,7 @@ def game():
     allSpritesGroup.add(plat)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
-    backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))
+    backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
 
     
 
@@ -76,11 +76,7 @@ def game():
         if keys[pygame.K_d] :
             player1.move(1,0)
         if keys[pygame.K_a] :
-            print()
-        if keys[pygame.K_w] :
-            print()
-        if keys[pygame.K_s] :
-            print()
+            player1.move(-1,0)
         if keys[pygame.K_SPACE]:
             print()
         

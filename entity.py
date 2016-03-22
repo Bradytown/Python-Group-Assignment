@@ -1,6 +1,5 @@
-import pygame
+import pygame, gameGlobals
 from pygame.locals import *
-from gameGlobals import *
 pygame.init()
 
 class entity(pygame.sprite.DirtySprite):
@@ -19,8 +18,8 @@ class entity(pygame.sprite.DirtySprite):
         self.x = x
         self.y = y
         
-        self.rect.x = self.x - playerX + xOrig
-        self.rect.y = self.y - playerY + yOrig
+        self.rect.x = self.x - gameGlobals.playerX + gameGlobals.xOrig
+        self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig
 
         self.dirty = 2
 
@@ -37,7 +36,7 @@ class entity(pygame.sprite.DirtySprite):
 
     def update(self):
         
-        self.rect.x = self.x - playerX + xOrig
-        self.rect.y = self.y - playerY + yOrig
+        self.rect.x = self.x - gameGlobals.playerX + gameGlobals.xOrig
+        self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig
 
         
