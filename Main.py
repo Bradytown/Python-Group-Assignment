@@ -17,12 +17,40 @@ def mainMenu():
 
 def game():
 
+
+
+    #Functions
+
+    def add(obj):
+        allSpritesGroup.add(obj)
+        allSpritesList.append(obj)
+
+
+    def screenAssign():
+
+        for i in range(0,len(allSpritesList)):
+
+            if allSpritesList[i].onScreenCheck() and onScreenGroup.has(allSpritesList[i]) == False:
+                onScreenGroup.add(allSpritesList[i])
+                offScreenGroup.remove(allSpritesList[i])
+            elif allSpritesList[i].onScreenCheck() == False and offScreenGroup.has(allSpritesList[i]) == False:
+                print("Off Screen")
+                offScreenGroup.add(allSpritesList[i])
+                onScreenGroup.remove(allSpritesList[i])
+
+                
+
+
+
     #Sprite Group Declarations
 
     allSpritesGroup = pygame.sprite.Group()
     onScreenGroup = pygame.sprite.Group()
     offScreenGroup = pygame.sprite.Group()
 
+    #Sprite list
+
+    allSpritesList = []
 
     ##FPS management
     fps = 60
@@ -34,7 +62,8 @@ def game():
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage)
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
-    allSpritesGroup.add(player1)
+
+    add(player1)
 
     #Moving player to centre
     #xOrig and yOrig in globals
@@ -46,14 +75,13 @@ def game():
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
     plat = gamePlatform(100,200,2,platform4Image)
 
-    allSpritesGroup.add(plat)
+    add(plat)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
-
     
 
-
+    screenAssign()
     
     
     while True:
@@ -91,6 +119,10 @@ def game():
 
         allSpritesGroup.update()
         updateArea = allSpritesGroup.draw(screen)
+
+        screenAssign()
+
+        print(onScreenGroup.sprites())
 
         pygame.display.update()
 

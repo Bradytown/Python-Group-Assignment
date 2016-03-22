@@ -39,4 +39,9 @@ class entity(pygame.sprite.DirtySprite):
         self.rect.x = self.x - gameGlobals.playerX + gameGlobals.xOrig
         self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig
 
-        
+    def onScreenCheck(self):
+        #If off screen return false, else true
+        if self.rect.x + self.width < 0 or self.rect.x > gameGlobals.screenWidth or self.rect.y > gameGlobals.screenHeight or self.rect.y + self.height < 0:
+            return False
+        else:
+            return True
