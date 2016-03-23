@@ -47,7 +47,7 @@ def game():
     #Sprite Group Declarations
 
     allSpritesGroup = pygame.sprite.Group()
-    onScreenGroup = pygame.sprite.Group()
+    onScreenGroup = pygame.sprite.RenderUpdates()
     offScreenGroup = pygame.sprite.Group()
 
     #Sprite list
@@ -86,9 +86,11 @@ def game():
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
     
+    screen.blit(backgroundImage,(0,0))
 
     screenAssign()
     
+    pygame.display.update()
     
     while True:
 
@@ -122,21 +124,21 @@ def game():
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
-                if checkClass(allSpritesList[i])=="gamePlatform":
+                if checkClass(allSpritesList[i]) == "gamePlatform":
                     #platform collision and stuff
+                    adsf=1123
         
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
 
         allSpritesGroup.update()
-        updateArea = allSpritesGroup.draw(screen)
+        updateArea = onScreenGroup.draw(screen)
+        print(updateArea)
 
         screenAssign()
 
-        print(onScreenGroup.sprites())
-
-        pygame.display.update()
+        pygame.display.update(updateArea)
 
 
         #FPS management
