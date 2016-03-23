@@ -67,6 +67,7 @@ def game():
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage)
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
+    player1.gravity(True)
 
     add(player1)
 
@@ -113,8 +114,16 @@ def game():
         if keys[pygame.K_SPACE]:
             print()
 
-        if player1.affectedByGravity == False:
-            player1.gravity(True)
+
+
+        #onScreen management
+
+
+        for i in range(0,len(allSpritesList)):
+            if onScreenGroup.has(allSpritesList[i]):
+                #Put Collision stuff here
+                if checkClass(allSpritesList[i])=="gamePlatform":
+                    #platform collision and stuff
         
         
         #Draw section
