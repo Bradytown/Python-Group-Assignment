@@ -39,7 +39,9 @@ def game():
                 onScreenGroup.remove(allSpritesList[i])
 
                 
+    def checkClass(obj):
 
+        return obj.__class__.__name__
 
 
     #Sprite Group Declarations
@@ -113,11 +115,7 @@ def game():
 
         if player1.affectedByGravity == False:
             player1.gravity(True)
-
-        #List Assignement
-
-        #for i in range(0, len(offScreenList)):
-            
+        
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
