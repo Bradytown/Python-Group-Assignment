@@ -110,7 +110,9 @@ def game():
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
             print()
-        
+
+        if player1.affectedByGravity == False:
+            player1.gravity(True)
 
         #List Assignement
 

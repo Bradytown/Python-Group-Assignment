@@ -12,6 +12,10 @@ class player(colliding):
     
     def update(self):
 
+        if self.affectedByGravity:
+            self.move (0,self.fallSpeed)
+            self.fallSpeed += self.acc
+
         gameGlobals.playerX = self.x
         gameGlobals.playerY = self.y
         
