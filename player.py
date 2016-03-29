@@ -2,13 +2,16 @@
 import pygame, gameGlobals
 from pygame.locals import *
 from colliding import colliding
+from bullet import bullet
 pygame.init()
 
 class player(colliding):
 
-    def __init__(self,x,y,image):    
+    def __init__(self,x,y,image,bulletImage,gunPos):    
         colliding.__init__(self,x,y,image)
 
+        self.bulletImage = bulletImage
+        self.gunPos = self.gunX, self.gunY = gunPos
     
     def update(self):
 
@@ -23,3 +26,7 @@ class player(colliding):
         self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig
 
         
+    def shoot(self):
+        
+        return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage) 
+    

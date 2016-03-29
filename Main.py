@@ -53,6 +53,7 @@ def game():
     #Sprite list
 
     allSpritesList = []
+    bulletList = []
 
     ##FPS management
     fps = 60
@@ -63,9 +64,11 @@ def game():
     #Player declaration
 
     playerSpeed = 3
+
+    bulletImage = pygame.image.load("Bullet & Sparks\Bullet.png")
     
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
-    player1 = player(0,0,playerImage)
+    player1 = player(0,0,playerImage,bulletImage,(3,8))
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
     player1.gravity(True)
 
@@ -79,7 +82,7 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-    plat = gamePlatform(100,200,2,platform4Image)
+    plat = gamePlatform(200,400,2,platform4Image)
 
     add(plat)
 
@@ -91,11 +94,12 @@ def game():
     screenAssign()
     
     pygame.display.update()
+
     
     while True:
 
         #Set current and previous time for FPS
-        #All code except for the display flip should be between
+        #All code should be between
         #the two fps management snippets
         previous_time, current_time = current_time, time.clock()
 
@@ -114,8 +118,10 @@ def game():
         if keys[pygame.K_a] :
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
-            print()
+            bulletList.append(player1.shoot())
 
+
+        print(bulletList)
 
 
         #onScreen management
@@ -127,7 +133,8 @@ def game():
                 if checkClass(allSpritesList[i]) == "gamePlatform":
                     #platform collision and stuff
                     adsf=1123
-        
+    
+
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
