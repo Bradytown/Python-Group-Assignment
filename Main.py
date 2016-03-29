@@ -134,7 +134,6 @@ def game():
 
         allSpritesGroup.update()
         updateArea = onScreenGroup.draw(screen)
-        print(updateArea)
 
         screenAssign()
 
