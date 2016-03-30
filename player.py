@@ -2,13 +2,18 @@
 import pygame, gameGlobals
 from pygame.locals import *
 from colliding import colliding
+from bullet import bullet
+from math import atan, pi
 pygame.init()
 
 class player(colliding):
 
-    def __init__(self,x,y,image):    
+    def __init__(self,x,y,image,bulletImage,gunPos):    
         colliding.__init__(self,x,y,image)
 
+        self.bulletImage = bulletImage
+        self.gunPos = self.gunX, self.gunY = gunPos
+        self.bulletVelocity = 5
     
     def update(self):
 
@@ -23,3 +28,22 @@ class player(colliding):
         self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig
 
         
+    def shoot(self):
+
+        self.mousePos = self.mouseX, self.mouseY = pygame.mouse.get_pos()
+        if (self.x-self.mouseX) == 0:
+            if self.y-self.mouseY > 0:
+                self.theta = 3*pi/2
+            else:
+                self.theta = pi/2
+        else:
+            self.theta = atan((self.y-self.mouseY)/(self.x-self.mouseX))
+        print(self.theta)
+
+        if self.mouseX > self.x:
+            self.direction = "right"
+        else:
+            self.direction = "left"
+
+        return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.direction) 
+    

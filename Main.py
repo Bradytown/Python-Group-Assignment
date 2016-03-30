@@ -68,7 +68,7 @@ def game():
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage)
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
-    player1.gravity(True)
+    player1.gravity(False)
 
     add(player1)
 
