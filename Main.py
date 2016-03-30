@@ -1,3 +1,4 @@
+
 import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
@@ -114,16 +115,19 @@ def game():
         if keys[pygame.K_SPACE]:
             print()
 
-
-
-        #onScreen management
+        #Checking for platform collision
+                #onScreen management
 
 
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
-                if checkClass(allSpritesList[i])=="gamePlatform":
-                    #platform collision and stuff
+                check = checkClass(allSpritesList[i])
+                if check == "gamePlatform":
+                    print("platform")
+                    player1.affectedByGravity = False
+
+
         
         
         #Draw section
