@@ -139,25 +139,19 @@ def game():
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
-<<<<<<< HEAD
 
                 check = checkClass(allSpritesList[i])
 
                 if check == "gamePlatform":
-                    
                     if pygame.sprite.collide_rect(player1, plat):
                         player1.fallSpeed = 0
                         
-=======
-                if checkClass(allSpritesList[i]) == "gamePlatform":
-                    #platform collision and stuff
-                    adsf=1123
+
 
         #Code to destroy collided bullet, enemies, etc.
         
         for i in range (0,len(deleteList)):
             del bullets[deleteList[i]-i]
->>>>>>> origin/master
 
         
         #Draw section
