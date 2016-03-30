@@ -45,3 +45,4 @@ class entity(pygame.sprite.DirtySprite):
             return False
         else:
             return True
+

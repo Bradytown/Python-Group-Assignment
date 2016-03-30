@@ -115,22 +115,31 @@ def game():
                 sys.exit()
 
         #Player Input
+
+
+        mousePos = mouseX, mouseY = pygame.mouse.get_pos()
+
+        if (player1.direction == "left" and mouseX > player1.rect.x + player1.width) or (player1.direction == "right" and mouseX < player1.rect.x):
+            player1.flip()
+                
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_d] :
+        if keys[pygame.K_d]:
             player1.move(playerSpeed,0)
-        if keys[pygame.K_a] :
+        if keys[pygame.K_a]:
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
             bulletList.append(player1.shoot())
             add(bulletList[len(bulletList)-1])
 
 
+
         #onScreen management
 
-
+        deleteList = []
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
+<<<<<<< HEAD
 
                 check = checkClass(allSpritesList[i])
 
@@ -139,6 +148,16 @@ def game():
                     if pygame.sprite.collide_rect(player1, plat):
                         player1.fallSpeed = 0
                         
+=======
+                if checkClass(allSpritesList[i]) == "gamePlatform":
+                    #platform collision and stuff
+                    adsf=1123
+
+        #Code to destroy collided bullet, enemies, etc.
+        
+        for i in range (0,len(deleteList)):
+            del bullets[deleteList[i]-i]
+>>>>>>> origin/master
 
         
         #Draw section

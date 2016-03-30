@@ -9,6 +9,7 @@ class colliding(entity):
         entity.__init__(self,x,y,image)
         self.acc = 0.2
         self.affectedByGravity=False
+        self.direction = "left"
 
     def gravity(self,x):
         if x:
@@ -18,7 +19,14 @@ class colliding(entity):
         else:
             print("False")
             self.affectedByGravity=False
-        
+
+    def flip(self):
+        if self.direction == "left":
+            self.direction = "right"
+        else:
+            self.direction = "left"
+
+        self.image = pygame.transform.flip(self.image, True, False)
 
     def update(self):
 
