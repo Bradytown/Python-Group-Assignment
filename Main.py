@@ -71,7 +71,7 @@ def game():
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage,bulletImage,(3,8))
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
-    player1.gravity(False)
+    player1.gravity(True)
 
     add(player1)
 
@@ -131,10 +131,14 @@ def game():
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
-                if checkClass(allSpritesList[i]) == "gamePlatform":
-                    #platform collision and stuff
-                    adsf=1123
-    
+
+                check = checkClass(allSpritesList[i])
+
+                if check == "gamePlatform":
+                    
+                    if pygame.sprite.collide_rect(player1, plat):
+                        player1.fallSpeed = 0
+                        
 
         
         #Draw section
