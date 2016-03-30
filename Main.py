@@ -66,11 +66,12 @@ def game():
     playerSpeed = 3
 
     bulletImage = pygame.image.load("Bullet & Sparks\Bullet.png")
+    bulletImage = pygame.transform.scale(bulletImage,(10,8))
     
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
     player1 = player(0,0,playerImage,bulletImage,(3,8))
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
-    player1.gravity(True)
+    player1.gravity(False)
 
     add(player1)
 
@@ -119,9 +120,7 @@ def game():
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
             bulletList.append(player1.shoot())
-
-
-        print(bulletList)
+            add(bulletList[len(bulletList)-1])
 
 
         #onScreen management
