@@ -40,10 +40,21 @@ class player(colliding):
             self.theta = atan((self.y-self.mouseY)/(self.x-self.mouseX))
         print(self.theta)
 
-        if self.mouseX > self.x:
-            self.direction = "right"
+        if self.direction == "left":
+            if self.mouseX > self.x + self.gunX:
+                self.bulletDirection = "right"
+            else:
+                self.bulletDirection = "left"
         else:
-            self.direction = "left"
+            if self.mouseX > self.x + self.width - self.gunX:
+                self.bulletDirection = "right"
+            else:
+                self.bulletDirection = "left"
 
-        return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.direction) 
+        if self.direction == "left":
+            return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
+        else:
+            return bullet(self.x+self.width-self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
+        
+
     
