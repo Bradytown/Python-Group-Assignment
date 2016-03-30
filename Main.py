@@ -1,4 +1,3 @@
-
 import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
@@ -48,12 +47,13 @@ def game():
     #Sprite Group Declarations
 
     allSpritesGroup = pygame.sprite.Group()
-    onScreenGroup = pygame.sprite.Group()
+    onScreenGroup = pygame.sprite.RenderUpdates()
     offScreenGroup = pygame.sprite.Group()
 
     #Sprite list
 
     allSpritesList = []
+    bulletList = []
 
     ##FPS management
     fps = 60
@@ -64,14 +64,19 @@ def game():
     #Player declaration
 
     playerSpeed = 3
+
+    bulletImage = pygame.image.load("Bullet & Sparks\Bullet.png")
+    bulletImage = pygame.transform.scale(bulletImage,(10,8))
     
     playerImage = pygame.image.load("Characters\Guy with Gun.png")
-    player1 = player(0,0,playerImage)
+    player1 = player(0,0,playerImage,bulletImage,(3,8))
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
     player1.gravity(False)
 
     add(player1)
 
+
+    #z
     #Moving player to centre
     #xOrig and yOrig in globals
     
@@ -80,21 +85,24 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-    plat = gamePlatform(100,200,2,platform4Image)
+    plat = gamePlatform(200,400,2,platform4Image)
 
     add(plat)
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
     
+    screen.blit(backgroundImage,(0,0))
 
     screenAssign()
     
+    pygame.display.update()
+
     
     while True:
 
         #Set current and previous time for FPS
-        #All code except for the display flip should be between
+        #All code should be between
         #the two fps management snippets
         previous_time, current_time = current_time, time.clock()
 
@@ -113,34 +121,31 @@ def game():
         if keys[pygame.K_a] :
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
-            print()
+            bulletList.append(player1.shoot())
+            add(bulletList[len(bulletList)-1])
 
-        #Checking for platform collision
-                #onScreen management
+
+        #onScreen management
 
 
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
-                check = checkClass(allSpritesList[i])
-                if check == "gamePlatform":
-                    print("platform")
-                    player1.affectedByGravity = False
+                if checkClass(allSpritesList[i]) == "gamePlatform":
+                    #platform collision and stuff
+                    adsf=1123
+    
 
-
-        
         
         #Draw section
         screen.blit(backgroundImage,(0,0))
 
         allSpritesGroup.update()
-        updateArea = allSpritesGroup.draw(screen)
+        updateArea = onScreenGroup.draw(screen)
 
         screenAssign()
 
-        print(onScreenGroup.sprites())
-
-        pygame.display.update()
+        pygame.display.update(updateArea)
 
 
         #FPS management
