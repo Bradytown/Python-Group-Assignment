@@ -62,15 +62,16 @@ class player(colliding):
             else:
                 self.bulletDirection = "left"
 
-            print("WORK ON THIS HTING IN PLAYER")
 
-            if (self.x-self.mouseX) == 0:
+            if (self.x+self.width-self.mouseX) == 0:
                 if self.y-self.mouseY > 0:
                     self.theta = 3*pi/2
                 else:
                     self.theta = pi/2
             else:
-                self.theta = atan((self.y-self.mouseY)/(self.x-self.mouseX))
+                self.theta = atan((self.y-self.mouseY)/(self.x+self.width-self.mouseX))
+
+        print(self.theta)
 
         if self.direction == "left":
             return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
