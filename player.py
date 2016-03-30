@@ -31,47 +31,37 @@ class player(colliding):
     def shoot(self):
 
         self.mousePos = self.mouseX, self.mouseY = pygame.mouse.get_pos()
-        if (self.x-self.mouseX) == 0:
-            if self.y-self.mouseY > 0:
-                self.theta = 3*pi/2
-            else:
-                self.theta = pi/2
-        else:
-            self.theta = atan((self.y-self.mouseY)/(self.x-self.mouseX))
-
 
         if self.direction == "left":
             
-            if self.mouseX > self.x + self.gunX:
+            if self.mouseX > self.rect.x + self.gunX:
                 self.bulletDirection = "right"
             else:
                 self.bulletDirection = "left"
                 
-            if (self.x-self.mouseX) == 0:
-                if self.y-self.mouseY > 0:
+            if (self.rect.x-self.mouseX) == 0:
+                if self.rect.y-self.mouseY > 0:
                     self.theta = 3*pi/2
                 else:
                     self.theta = pi/2
             else:
-                self.theta = atan((self.y-self.mouseY)/(self.x-self.mouseX))
+                self.theta = atan((self.rect.y-self.mouseY)/(self.rect.x-self.mouseX))
                 
         else:
             
-            if self.mouseX > self.x + self.width - self.gunX:
+            if self.mouseX > self.rect.x + self.width - self.gunX:
                 self.bulletDirection = "right"
             else:
                 self.bulletDirection = "left"
 
 
-            if (self.x+self.width-self.mouseX) == 0:
-                if self.y-self.mouseY > 0:
+            if (self.rect.x+self.width-self.mouseX) == 0:
+                if self.rect.y-self.mouseY > 0:
                     self.theta = 3*pi/2
                 else:
                     self.theta = pi/2
             else:
-                self.theta = atan((self.y-self.mouseY)/(self.x+self.width-self.mouseX))
-
-        print(self.theta)
+                self.theta = atan((self.rect.y-self.mouseY)/(self.rect.x+self.width-self.mouseX))
 
         if self.direction == "left":
             return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
