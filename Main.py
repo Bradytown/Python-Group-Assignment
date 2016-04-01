@@ -97,15 +97,15 @@ def game():
                 elif loadType == "enemy":
                     print()
 
-                if loadType = "platform":
+                if loadType == "platform":
 
                     platformCoordinates.append((xCoordinate,yCoordinate))
                     
-                elif loadType = "wall":
+                elif loadType == "wall":
                     
                     wallCoordinates.append((xCoordinate,yCoordinate))
                     
-                elif loadType = "enemy":
+                elif loadType == "enemy":
 
                     enemyCoordinates.append((xCoordinate,yCoordinate))
                     
