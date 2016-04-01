@@ -17,9 +17,7 @@ def mainMenu():
 
 def game():
 
-
-
-    #Functions
+        #Functions
 
     def add(obj):
         allSpritesGroup.add(obj)
@@ -53,6 +51,10 @@ def game():
         platformCoordinates = []
         wallCoordinates = []
         enemyCoordinates = []
+
+        platformList = []
+        wallList = []
+        enemyList = []
         
         for line in f:
             inp = f.readline()
@@ -109,9 +111,14 @@ def game():
 
                     enemyCoordinates.append((xCoordinate,yCoordinate))
                     
+        for i in range(0, len(platformCoordinates)):
+            platformList.append(gamePlatform(platformCoordinates[i][0],platformCoordinates[i][1],platform4Image))
 
-       
+        for i in range(0, len(wallCoordinates)):
+            print("Implement walls")
 
+        for i in range(0, len(enemyCoordinates)):
+            enemyList.append(enemy(enemyCoordinates[i][0],enemyCoordinates[i][1],enemyImage))
 
     #Sprite Group Declarations
 
@@ -154,9 +161,13 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-    plat = gamePlatform(200,400,2,platform4Image)
+    plat = gamePlatform(200,400,platform4Image)
 
     add(plat)
+
+    #Enemy image declaration
+
+    enemyImage = pygame.image.load("Characters\Guy with Gun3.jpg")
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
@@ -166,6 +177,15 @@ def game():
     screenAssign()
     
     pygame.display.update()
+
+
+
+#=============================================================================    
+#=============================================================================
+    
+
+#=============================================================================
+#============================================================================= 
 
     
     while True:
