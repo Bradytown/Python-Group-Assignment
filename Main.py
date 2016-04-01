@@ -34,6 +34,7 @@ def game():
                 onScreenGroup.add(allSpritesList[i])
                 offScreenGroup.remove(allSpritesList[i])
             elif allSpritesList[i].onScreenCheck() == False and offScreenGroup.has(allSpritesList[i]) == False:
+                print("Off Screen")
                 offScreenGroup.add(allSpritesList[i])
                 onScreenGroup.remove(allSpritesList[i])
 
@@ -164,13 +165,6 @@ def game():
 
         if (player1.direction == "left" and mouseX > player1.rect.x + player1.width) or (player1.direction == "right" and mouseX < player1.rect.x):
             player1.flip()
-
-
-        
-            
-        if pygame.mouse.get_pressed()[0]:
-            bulletList.append(player1.shoot())
-            add(bulletList[len(bulletList)-1])
                 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_d]:
@@ -178,8 +172,8 @@ def game():
         if keys[pygame.K_a]:
             player1.move(-playerSpeed,0)
         if keys[pygame.K_SPACE]:
-            #jump code
-            print()
+            bulletList.append(player1.shoot())
+            add(bulletList[len(bulletList)-1])
 
 
 
