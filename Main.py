@@ -43,6 +43,50 @@ def game():
         return obj.__class__.__name__
 
 
+    def loadLevel(x):
+        
+        levelFile =  open("level_"+ str(x) + ".txt","r")
+
+        loadType = ""
+
+        platformCoordinates = []
+        wallCoordinates = []
+        enemyCoordinates = []
+        
+        for line in f:
+            inp = f.readline()
+
+
+            if inp = "Platforms":
+                loadType = "platform"
+                                
+            elif inp = "Walls":
+                loadType = "wall"
+
+            elif inp = "Enemies":
+                loadType = "enemy"
+
+            elif inp != "\n":
+                #coordinate parsing
+                spaceInd = inp.find(" ")
+                newLineInd = inp("\n")
+                
+                xlen = spaceInd
+                ylen = newLineInd - spaceInd - 1
+
+                for i in range(0, xlen):
+
+                    print()
+
+                if loadType = "platform":
+                    
+                    print()
+                elif loadType = "wall":
+                    print()
+                elif loadType = "enemy":
+                    print()
+
+
     #Sprite Group Declarations
 
     allSpritesGroup = pygame.sprite.Group()
