@@ -58,13 +58,13 @@ def game():
             inp = f.readline()
 
 
-            if inp = "Platforms":
+            if inp == "Platforms":
                 loadType = "platform"
                                 
-            elif inp = "Walls":
+            elif inp == "Walls":
                 loadType = "wall"
 
-            elif inp = "Enemies":
+            elif inp == "Enemies":
                 loadType = "enemy"
 
             elif inp != "\n":
@@ -79,12 +79,12 @@ def game():
 
                     print()
 
-                if loadType = "platform":
+                if loadType == "platform":
                     
                     print()
-                elif loadType = "wall":
+                elif loadType == "wall":
                     print()
-                elif loadType = "enemy":
+                elif loadType == "enemy":
                     print()
 
 
