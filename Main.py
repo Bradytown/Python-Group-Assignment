@@ -73,11 +73,21 @@ def game():
                 newLineInd = inp("\n")
                 
                 xlen = spaceInd
-                ylen = newLineInd - spaceInd - 1
+
+                xCoordinate = 0
+                yCoordinate = 0
 
                 for i in range(0, xlen):
 
-                    print()
+                    if i != 0:
+                        xCoordinate = xCoordinate*10
+                    xCoordinate += int(inp[i])
+
+                for i in range(spaceInd+1, newLineInd):
+
+                    if i != 0:
+                        yCoordinate = yCoordinate*10
+                    yCoordinate += int(inp[i])
 
                 if loadType == "platform":
                     
@@ -86,6 +96,21 @@ def game():
                     print()
                 elif loadType == "enemy":
                     print()
+
+                if loadType = "platform":
+
+                    platformCoordinates.append((xCoordinate,yCoordinate))
+                    
+                elif loadType = "wall":
+                    
+                    wallCoordinates.append((xCoordinate,yCoordinate))
+                    
+                elif loadType = "enemy":
+
+                    enemyCoordinates.append((xCoordinate,yCoordinate))
+                    
+
+       
 
 
     #Sprite Group Declarations
