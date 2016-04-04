@@ -2,6 +2,8 @@ import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
 from gamePlatform import *
+from mouseCursor import *
+from enemy import *
 
 
 pygame.init()
@@ -32,7 +34,6 @@ def game():
                 onScreenGroup.add(allSpritesList[i])
                 offScreenGroup.remove(allSpritesList[i])
             elif allSpritesList[i].onScreenCheck() == False and offScreenGroup.has(allSpritesList[i]) == False:
-                print("Off Screen")
                 offScreenGroup.add(allSpritesList[i])
                 onScreenGroup.remove(allSpritesList[i])
 
@@ -44,7 +45,7 @@ def game():
 
     def loadLevel(x):
         
-        levelFile =  open("level_"+ str(x) + ".txt","r")
+        f =  open("Levels\level_"+ str(x) + ".txt","r")
 
         loadType = ""
 
@@ -56,11 +57,9 @@ def game():
         wallList = []
         enemyList = []
         
-        for line in f:
-            inp = f.readline()
-
-
-            if inp == "Platforms":
+        for inp in f:
+            
+            if inp == "Platforms\n":
                 loadType = "platform"
                                 
             elif inp == "Walls":
@@ -72,7 +71,7 @@ def game():
             elif inp != "\n":
                 #coordinate parsing
                 spaceInd = inp.find(" ")
-                newLineInd = inp("\n")
+                newLineInd = inp.find("\n")
                 
                 xlen = spaceInd
 
@@ -92,14 +91,6 @@ def game():
                     yCoordinate += int(inp[i])
 
                 if loadType == "platform":
-                    
-                    print()
-                elif loadType == "wall":
-                    print()
-                elif loadType == "enemy":
-                    print()
-
-                if loadType == "platform":
 
                     platformCoordinates.append((xCoordinate,yCoordinate))
                     
@@ -113,7 +104,7 @@ def game():
                     
         for i in range(0, len(platformCoordinates)):
             platformList.append(gamePlatform(platformCoordinates[i][0],platformCoordinates[i][1],platform4Image))
-
+            add(platformList[i])
         for i in range(0, len(wallCoordinates)):
             print("Implement walls")
 
@@ -151,6 +142,17 @@ def game():
 
     add(player1)
 
+    #mouse cursor
+
+    cursorImage = pygame.image.load("Bullet & Sparks\crosshair.png")
+    cursor = mouseCursor(0,0,cursorImage)
+    cursor.resize(50,50)
+
+    pygame.mouse.set_visible(False)
+
+    allSpritesGroup.add(cursor)
+    onScreenGroup.add(cursor)
+
 
     #z
     #Moving player to centre
@@ -161,9 +163,9 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-    plat = gamePlatform(200,400,platform4Image)
-
-    add(plat)
+##    plat = gamePlatform(200,400,platform4Image)
+##
+##    add(plat)
 
     #Enemy image declaration
 
@@ -183,6 +185,8 @@ def game():
 #=============================================================================    
 #=============================================================================
     
+    loadLevel(1)
+
 
 #=============================================================================
 #============================================================================= 
@@ -235,7 +239,7 @@ def game():
                 check = checkClass(allSpritesList[i])
 
                 if check == "gamePlatform":
-                    if pygame.sprite.collide_rect(player1, plat):
+                    if pygame.sprite.collide_rect(player1, allSpritesList[i]):
                         player1.fallSpeed = 0
                         
 
