@@ -33,6 +33,7 @@ class colliding(entity):
         if self.affectedByGravity:
             self.move (0,self.fallSpeed)
             self.fallSpeed += self.acc
-        
+            if fallSpeed > 100:
+                fallSpeed = 100
         self.rect.x = self.x - gameGlobals.playerX + gameGlobals.xOrig
         self.rect.y = self.y - gameGlobals.playerY + gameGlobals.yOrig

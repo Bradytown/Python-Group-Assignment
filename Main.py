@@ -100,16 +100,16 @@ def game():
 
                     enemyCoordinates.append((xCoordinate,yCoordinate))
                     
-<<<<<<< HEAD
 
-       
-=======
         for i in range(0, len(platformCoordinates)):
             platformList.append(gamePlatform(platformCoordinates[i][0],platformCoordinates[i][1],platform4Image))
             add(platformList[i])
         for i in range(0, len(wallCoordinates)):
             print("Implement walls")
->>>>>>> origin/master
+
+        for i in range(0, len(enemyCoordinates)):
+            enemyList.append(enemy(enemyCoordinates[i][0],enemyCoordinates[i][1],enemyImage))
+
 
 
     #Sprite Group Declarations
@@ -164,15 +164,10 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
-<<<<<<< HEAD
-    plat = gamePlatform(200,400,2,platform4Image)
 
-    add(plat)
-=======
 ##    plat = gamePlatform(200,400,platform4Image)
 ##
 ##    add(plat)
->>>>>>> origin/master
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
@@ -183,8 +178,6 @@ def game():
     
     pygame.display.update()
 
-<<<<<<< HEAD
-=======
 
 
 #=============================================================================    
@@ -196,7 +189,6 @@ def game():
 #=============================================================================
 #============================================================================= 
 
->>>>>>> origin/master
     
     while True:
 
@@ -242,12 +234,8 @@ def game():
                 check = checkClass(allSpritesList[i])
 
                 if check == "gamePlatform":
-<<<<<<< HEAD
-                    if pygame.sprite.collide_rect(player1, plat):
-=======
 
                     if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + 140 > plat.y:
->>>>>>> origin/master
                         player1.fallSpeed = 0
                         
 
