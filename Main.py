@@ -239,7 +239,11 @@ def game():
                 check = checkClass(allSpritesList[i])
 
                 if check == "gamePlatform":
+<<<<<<< HEAD
                     if pygame.sprite.collide_rect(player1, allSpritesList[i]):
+=======
+                    if pygame.sprite.collide_rect(player1, plat)and player1.y + 140 > plat.y:
+>>>>>>> origin/master
                         player1.fallSpeed = 0
                         
 
