@@ -54,6 +54,10 @@ def game():
         platformCoordinates = []
         wallCoordinates = []
         enemyCoordinates = []
+
+        platformList = []
+        wallList = []
+        enemyList = []
         
         for inp in f:
             
