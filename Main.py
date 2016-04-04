@@ -2,6 +2,8 @@ import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
 from gamePlatform import *
+from mouseCursor import *
+from enemy import *
 
 
 pygame.init()
@@ -34,7 +36,6 @@ def game():
                 onScreenGroup.add(allSpritesList[i])
                 offScreenGroup.remove(allSpritesList[i])
             elif allSpritesList[i].onScreenCheck() == False and offScreenGroup.has(allSpritesList[i]) == False:
-                print("Off Screen")
                 offScreenGroup.add(allSpritesList[i])
                 onScreenGroup.remove(allSpritesList[i])
 
@@ -46,7 +47,7 @@ def game():
 
     def loadLevel(x):
         
-        levelFile =  open("level_"+ str(x) + ".txt","r")
+        f =  open("Levels\level_"+ str(x) + ".txt","r")
 
         loadType = ""
 
@@ -54,11 +55,9 @@ def game():
         wallCoordinates = []
         enemyCoordinates = []
         
-        for line in f:
-            inp = f.readline()
-
-
-            if inp == "Platforms":
+        for inp in f:
+            
+            if inp == "Platforms\n":
                 loadType = "platform"
                                 
             elif inp == "Walls":
@@ -70,7 +69,7 @@ def game():
             elif inp != "\n":
                 #coordinate parsing
                 spaceInd = inp.find(" ")
-                newLineInd = inp("\n")
+                newLineInd = inp.find("\n")
                 
                 xlen = spaceInd
 
@@ -90,14 +89,6 @@ def game():
                     yCoordinate += int(inp[i])
 
                 if loadType == "platform":
-                    
-                    print()
-                elif loadType == "wall":
-                    print()
-                elif loadType == "enemy":
-                    print()
-
-                if loadType == "platform":
 
                     platformCoordinates.append((xCoordinate,yCoordinate))
                     
@@ -109,8 +100,16 @@ def game():
 
                     enemyCoordinates.append((xCoordinate,yCoordinate))
                     
+<<<<<<< HEAD
 
        
+=======
+        for i in range(0, len(platformCoordinates)):
+            platformList.append(gamePlatform(platformCoordinates[i][0],platformCoordinates[i][1],platform4Image))
+            add(platformList[i])
+        for i in range(0, len(wallCoordinates)):
+            print("Implement walls")
+>>>>>>> origin/master
 
 
     #Sprite Group Declarations
@@ -144,6 +143,17 @@ def game():
 
     add(player1)
 
+    #mouse cursor
+
+    cursorImage = pygame.image.load("Bullet & Sparks\crosshair.png")
+    cursor = mouseCursor(0,0,cursorImage)
+    cursor.resize(50,50)
+
+    pygame.mouse.set_visible(False)
+
+    allSpritesGroup.add(cursor)
+    onScreenGroup.add(cursor)
+
 
     #z
     #Moving player to centre
@@ -154,9 +164,15 @@ def game():
     #Platforms
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
+<<<<<<< HEAD
     plat = gamePlatform(200,400,2,platform4Image)
 
     add(plat)
+=======
+##    plat = gamePlatform(200,400,platform4Image)
+##
+##    add(plat)
+>>>>>>> origin/master
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
@@ -167,6 +183,20 @@ def game():
     
     pygame.display.update()
 
+<<<<<<< HEAD
+=======
+
+
+#=============================================================================    
+#=============================================================================
+    
+    loadLevel(1)
+
+
+#=============================================================================
+#============================================================================= 
+
+>>>>>>> origin/master
     
     while True:
 
@@ -212,7 +242,12 @@ def game():
                 check = checkClass(allSpritesList[i])
 
                 if check == "gamePlatform":
+<<<<<<< HEAD
                     if pygame.sprite.collide_rect(player1, plat):
+=======
+
+                    if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + 140 > plat.y:
+>>>>>>> origin/master
                         player1.fallSpeed = 0
                         
 
