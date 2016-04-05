@@ -4,3 +4,11 @@ Platforms
 400 600
 300 500
 200 2000
+
+Walls
+
+
+
+Enemies
+
+600 400

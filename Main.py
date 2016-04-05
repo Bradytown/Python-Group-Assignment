@@ -64,10 +64,10 @@ def game():
             if inp == "Platforms\n":
                 loadType = "platform"
                                 
-            elif inp == "Walls":
+            elif inp == "Walls\n":
                 loadType = "wall"
 
-            elif inp == "Enemies":
+            elif inp == "Enemies\n":
                 loadType = "enemy"
 
             elif inp != "\n":
@@ -113,7 +113,7 @@ def game():
 
         for i in range(0, len(enemyCoordinates)):
             enemyList.append(enemy(enemyCoordinates[i][0],enemyCoordinates[i][1],enemyImage))
-
+            add(enemyList[i])
 
 
     #Sprite Group Declarations
@@ -165,13 +165,11 @@ def game():
     
     player1.move(gameGlobals.xOrig, gameGlobals.yOrig)
 
-    #Platforms
+    #Images
 
     platform4Image = pygame.image.load("Platforms & Walls\platform4.png")
 
-##    plat = gamePlatform(200,400,platform4Image)
-##
-##    add(plat)
+    enemyImage = pygame.image.load("Characters\Guy with Gun3.jpg")
 
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
