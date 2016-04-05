@@ -231,6 +231,17 @@ def game():
 
         #onScreen management
 
+        
+
+
+        
+
+        
+        #Draw section
+        screen.blit(backgroundImage,(0,0))
+
+        allSpritesGroup.update()
+
         deleteList = []
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
@@ -240,21 +251,15 @@ def game():
 
                 if check == "gamePlatform":
 
-                    if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + 140 > allSpritesList[i].y:
-                        player1.fallSpeed = 0
-                        
-
+                    if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + player1.height - player1.fallSpeed - 5 <= allSpritesList[i].y :
+                        player1.fallSpeed = 1
+                        player1.y = allSpritesList[i].y - player1.height
 
         #Code to destroy collided bullet, enemies, etc.
         
         for i in range (0,len(deleteList)):
             del bullets[deleteList[i]-i]
-
         
-        #Draw section
-        screen.blit(backgroundImage,(0,0))
-
-        allSpritesGroup.update()
         updateArea = onScreenGroup.draw(screen)
 
         screenAssign()
