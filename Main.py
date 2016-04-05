@@ -145,6 +145,8 @@ def game():
     player1.resize(gameGlobals.playerWidth,gameGlobals.playerHeight)
     player1.gravity(True)
 
+    onGround = False
+
     add(player1)
 
     #mouse cursor
@@ -224,8 +226,8 @@ def game():
             player1.move(playerSpeed,0)
         if keys[pygame.K_a]:
             player1.move(-playerSpeed,0)
-        if keys[pygame.K_SPACE]:
-            print("jump code")
+        if keys[pygame.K_SPACE] and onGround == True:
+            player1.fallSpeed = -8
 
         #onScreen management
 
@@ -241,6 +243,7 @@ def game():
         allSpritesGroup.update()
 
         deleteList = []
+        onGround = False
         for i in range(0,len(allSpritesList)):
             if onScreenGroup.has(allSpritesList[i]):
                 #Put Collision stuff here
@@ -249,9 +252,10 @@ def game():
 
                 if check == "gamePlatform":
 
-                    if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + player1.height - player1.fallSpeed - 5 <= allSpritesList[i].y :
+                    if pygame.sprite.collide_rect(player1, allSpritesList[i])and player1.y + player1.height - player1.fallSpeed - 5 <= allSpritesList[i].y and keys[pygame.K_s] != True :
                         player1.fallSpeed = 1
                         player1.y = allSpritesList[i].y - player1.height
+                        onGround = True
 
         #Code to destroy collided bullet, enemies, etc.
         
