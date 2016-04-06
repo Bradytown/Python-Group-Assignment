@@ -4,6 +4,7 @@ from player import *
 from gamePlatform import *
 from mouseCursor import *
 from enemy import *
+from wall import *
 
 
 pygame.init()
@@ -109,7 +110,8 @@ def game():
             platformList.append(gamePlatform(platformCoordinates[i][0],platformCoordinates[i][1],platform4Image))
             add(platformList[i])
         for i in range(0, len(wallCoordinates)):
-            print("Implement walls")
+            wallList.append(wall(wallCoordinates[i][0],wallCoordinates[i][1],wallImage))
+            add(wallList[i])
 
         for i in range(0, len(enemyCoordinates)):
             enemyList.append(enemy(enemyCoordinates[i][0],enemyCoordinates[i][1],enemyImage))
@@ -173,6 +175,9 @@ def game():
 
     enemyImage = pygame.image.load("Characters\Guy with Gun3.jpg")
 
+    wallImage = pygame.image.load("Platforms & Walls\Wall3.jpg")
+    wallImage = pygame.transform.scale(wallImage, (100,100))
+
     backgroundImage = pygame.image.load("Backgrounds\City.png")
     backgroundImage = pygame.transform.scale(backgroundImage, (gameGlobals.screenWidth, gameGlobals.screenHeight))
     
@@ -229,10 +234,6 @@ def game():
         if keys[pygame.K_SPACE] and onGround == True:
             player1.fallSpeed = -8
 
-        #onScreen management
-
-        
-
 
         
 
@@ -256,6 +257,25 @@ def game():
                         player1.fallSpeed = 1
                         player1.y = allSpritesList[i].y - player1.height
                         onGround = True
+
+                if check == "wall":
+
+                    if pygame.sprite.collide_rect(player1, allSpritesList[i]):
+
+                        print("thing")
+
+                        if player1.fallSpeed < 0 and player1.y - player1.fallSpeed - 10 > allSpritesList[i].y + allSpritesList[i].height:
+                            print ("<")
+                            player1.y = allSpritesList[i].y + allSpritesList[i].height
+                            fallSpeed = 1
+                        elif player1.fallSpeed > 0 and player1.y + player1.height - player1.fallSpeed < allSpritesList[i].y:
+                            print("FIX THE JUMPING UP COLLISION")
+                            player1.y = allSpritesList[i].y - player1.height
+                            player1.fallSpeed = 1
+                            onGround = True
+                        elif player1.fallSpeed == 0:
+                            print(" ")
+                            
 
         #Code to destroy collided bullet, enemies, etc.
         
