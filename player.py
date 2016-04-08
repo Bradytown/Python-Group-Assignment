@@ -4,6 +4,7 @@ from pygame.locals import *
 from colliding import colliding
 from bullet import bullet
 from math import atan, pi
+from checkClass import *
 pygame.init()
 
 class player(colliding):
@@ -64,9 +65,9 @@ class player(colliding):
                 self.theta = atan((self.rect.y-self.mouseY)/(self.rect.x+self.width-self.mouseX))
 
         if self.direction == "left":
-            return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
+            return bullet(self.x+self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection, checkClass(self)) 
         else:
-            return bullet(self.x+self.width-self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection) 
+            return bullet(self.x+self.width-self.gunX, self.y+self.gunY, self.bulletImage, self.theta, self.bulletVelocity, self.bulletDirection, checkClass(self)) 
         
 
     

@@ -1,3 +1,20 @@
+#Add in bullet deletion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import pygame, time, gameGlobals
 from pygame.locals import *
 from player import *
@@ -5,6 +22,7 @@ from gamePlatform import *
 from mouseCursor import *
 from enemy import *
 from wall import *
+from checkClass import *
 
 
 pygame.init()
@@ -39,11 +57,6 @@ def game():
             elif allSpritesList[i].onScreenCheck() == False and offScreenGroup.has(allSpritesList[i]) == False:
                 offScreenGroup.add(allSpritesList[i])
                 onScreenGroup.remove(allSpritesList[i])
-
-                
-    def checkClass(obj):
-
-        return obj.__class__.__name__
 
 
     def loadLevel(x):
@@ -150,6 +163,9 @@ def game():
     onGround = False
 
     add(player1)
+
+    #how far a bullet travels offscreen
+    bulletBuffer = 1000
 
     #mouse cursor
 
@@ -262,20 +278,22 @@ def game():
 
                     if pygame.sprite.collide_rect(player1, allSpritesList[i]):
 
-                        print("thing")
-
-                        if player1.fallSpeed < 0 and player1.y - player1.fallSpeed - 10 > allSpritesList[i].y + allSpritesList[i].height:
-                            print ("<")
+                        if player1.fallSpeed < 0 and player1.y - player1.fallSpeed + 10 > allSpritesList[i].y + allSpritesList[i].height:
                             player1.y = allSpritesList[i].y + allSpritesList[i].height
-                            fallSpeed = 1
-                        elif player1.fallSpeed > 0 and player1.y + player1.height - player1.fallSpeed < allSpritesList[i].y:
-                            print("FIX THE JUMPING UP COLLISION")
+                            player1.fallSpeed = 1
+                        elif player1.fallSpeed > 0 and player1.y + player1.height - player1.fallSpeed - 10 < allSpritesList[i].y:
                             player1.y = allSpritesList[i].y - player1.height
                             player1.fallSpeed = 1
                             onGround = True
-                        elif player1.fallSpeed == 0:
-                            print(" ")
-                            
+
+                        elif keys[pygame.K_d] and player1.x + player1.width - playerSpeed - 10 < allSpritesList[i].x:
+                            player1.x = allSpritesList[i].x - player1.width
+                        elif keys[pygame.K_a] and player1.x + playerSpeed + 10 > allSpritesList[i].x + allSpritesList[i].width:
+                            player1.x = allSpritesList[i].x + allSpritesList[i].width
+
+                if check == "bullet":
+                    if allSpritesList[i].shooter != "player":
+                        print("kill player")
 
         #Code to destroy collided bullet, enemies, etc.
         
